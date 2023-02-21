@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HOSTEL MANGEMENT SYSTEM</title>
+    <link type="text/css" rel="stylesheet" href="{{url_for('static',filename = '/AddVisitor.css')}}">
+   
+</head>
+<body>
+    <section class="main">
+        <div class="main-top">
+          <h1>Visitor-Record</h1>
+          <i class="fas fa-user-cog"></i>
+        </div>
+    </section>
+<form action ="{{url_for ('addvisitor')}}" method="POST">
+<br>
+    
+    VisitorName: <input type="text" name="visitorname" required>
+    mobileNumber<input type="text" name="mobilenumber" required> 
+    StudentId. <input type="text" name="StudentId" required> 
+
+
+    <br><br>
+    <input type="submit" value="submit" class="button1"><hr>
+    <section class="attendance">
+        <div class="attendance-list">
+            <table id="tbl" class="table">
+              <thead>
+                <tr>
+                  <th>Visitor Id</th>
+                  <th>VisitorName</th>
+                  <th>MobileNumber</th>
+                  <th>Student Id</th> 
+                  <th>REMOVE</th>
+                  <th>MODIFY</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for i in data %}
+                <tr>
+                   <td>{{i[0]}}</td>
+                   <td>{{i[1]}}</td>
+                   <td>{{i[2]}}</td>
+                   <td>{{i[3]}}</td>
+                   <td>{{i[4]}}</td>
+                   <td>{{i[5]}}</td>
+      
+                   <td><a href="{{url_for('remove',id1=i[0])}}">REMOVE</a></td>
+                   <td><a href="{{url_for('modefi',id1=i[0])}}">MODIFY</a></td>
+                   
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </section>
+</form>
+</div>
+</body>
+</html>
+
+

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HOSTEL MANGEMENT SYSTEM</title>
+    <link type="text/css" rel="stylesheet" href="{{url_for('static',filename ='/Visitor.css')}}">
+    <link rel="stylesheet" href="Visitor.css">
+</head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <center><b>{{message}}</b><center>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<body >
+    <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-1 col-lg-1">
+
+    <table>
+        <tr>
+            <td>
+                <!--HTML form for crud operation-->
+                <form>
+                    <div>
+                        <label for="mobile">mobile</label>
+                        <select name="mobile" id="mobile" >
+                            {% for i in data %}
+                            <option>{{i[2]}}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="submit">
+                    </div>
+                </form>
+      
+                <form autocomplete="off"  action="{{url_for('visitor')}}" method="POST">
+                    <div>
+                        <label for="fullName">VisitorName</label>
+                        <input type="text" name="Name" id="Name" value="{{details[1]}}" readonly>
+                    </div>
+                    <div>
+                        <label for="salary">mobile Number</label>
+                        <input type="text" name="mobile" id="mobile" value="{{data1}}">
+                    </div>
+                    
+                    <div>
+                        <label for="empCode">Student-id</label>
+                         <input type="text" name="empCode" id="empCode" value="{{details[2]}}">
+                    </div>
+                    
+                    
+                    
+                    <button type="submit">submit</button>
+                </form>
+            </td>
+        <!--</div>
+    </div>
+</div>
+            <div class="container">
+                <div class="row">
+                  <div class="col-12 col-md-7 col-lg-6">--->
+            <td>
+                <table class="list" id="employeeList">
+                    <thead>
+                        <tr>
+                            
+                            <th>VisitorName</th>                           
+                            <th>Mobile Numbe</th>
+                            <th>Student-id</th>
+                            <th>Check(IN)</th>
+                            <th>Check(OUT)</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in visitor %}
+                            <tr>
+                                <td>{{i[0]}}</td>
+                                <td>{{i[1]}}</td>
+                                <td>{{i[2]}}</td>
+                                <td>{{i[3]}}</td>
+                                <td>{{i[4]}}</td>
+                                {% if i[5]!=None %}
+                                    <td>{{i[5]}}</td>
+                                {% else %}
+                                 <td><a href='{{url_for("incoming",date=i[0],mobile=i[1])}}'>{{i[4]}}</td></a>
+                                {% endif %}
+                             {% if i[4]!=None %}
+                                <td>{{i[4]}}</td>
+                            {% else %}
+                            <td><a href='{{url_for("outgoing",date=i[0],mobile=i[1])}}'>{{i[5]}}</td></a>
+                            {% endif %}
+                          </tr> 
+                        {% endfor %}  
+                           
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        var selectedRow = null;
+        function onFormSubmit(e){
+            event.preventDefault();
+            var formData = readFormData();
+            if(selectedRow === null){
+                insertNewRecord(formData);
+            }else{
+                updateRecord(formData)
+            }
+            resetForm();
+            }
+        // Read operation using this function
+        function readFormData(){
+            var formData = {};
+            formData["Name"] = document.getElementById("Name").value;
+            formData["mobile"] = document.getElementById("mobile").value; 
+            formData["empCode"] = document.getElementById("empCode").value;                   
+            formData["Date"] = document.getElementById("Date").value;
+            return formData
+        }
+         
+        // Create operation
+        function insertNewRecord(data){
+            var table = document.getElementById("employeeList").getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.length);
+            var cell1 = newRow.insertCell(0);
+                cell1.innerHTML = data.Name;
+            var cell2 = newRow.insertCell(1);
+                cell2.innerHTML = data.mobile;
+            
+            var cell3 = newRow.insertCell(2);
+                cell3.innerHTML = data.empCode;
+            
+            
+            var cell5 = newRow.insertCell(3);
+                cell5.innerHTML = Date.Date `
+        }
+         
+       
+    
+    
+
+
+    </script>
+         </div>
+        </div>  
+    </div>        
+</body>
+
+</html>
