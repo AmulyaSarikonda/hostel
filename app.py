@@ -35,7 +35,7 @@ def registration():
         cursor.execute('insert into register(FristName,LastName,EmailId,password) values(%s,%s,%s,%s)',[firstname,lastname,email,password])
         mysql.connection.commit()
         cursor.close()
-        return redirect(url_for('admin'))
+        return redirect(url_for('Admin'))
     return render_template('Register.html')
 @app.route('/login')
 def login():
